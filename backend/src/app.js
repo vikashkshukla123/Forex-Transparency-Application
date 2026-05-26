@@ -1,21 +1,9 @@
-import axios from "axios";
+import express from "express";
+import cors from "cors";
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-});
-
-export default api;
-
-const express = require('express');
-const cors = require('cors');
-
-const transactionRoutes =
-    require('./routes/transactionRoutes');
-
-const authRoutes =
-    require('./routes/authRoutes');
-
-const chatBotRoutes = require('./routes/chatbotRoutes')
+import transactionRoutes from "./routes/transactionRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import chatbotRoutes from "./routes/chatbotRoutes.js";
 
 const app = express();
 
@@ -25,20 +13,22 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.use('/api/transactions', transactionRoutes);
+app.use("/api/transactions", transactionRoutes);
 
-app.use('/api/auth', authRoutes);
-app.use('/api/chatbot', chatBotRoutes) 
+app.use("/api/auth", authRoutes);
+
+app.use("/api/chatbot", chatbotRoutes);
+
 // Health Check
-app.get('/', (req, res) => {
-    res.send('API Working');
+app.get("/", (req, res) => {
+  res.send("API Working");
 });
 
 // 404 Handler
 app.use((req, res) => {
-    res.status(404).json({
-        message: "Route not found"
-    });
+  res.status(404).json({
+    message: "Route not found",
+  });
 });
 
-module.exports = app;
+export default app;
