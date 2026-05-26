@@ -1,5 +1,6 @@
 import API from './api'
-export const sendMessage = async(message)=>{
+
+export const sendMessage = async (message) => {
     return API.post('/chatbot',{
         message
     })
