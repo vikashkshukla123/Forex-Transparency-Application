@@ -7,4 +7,5 @@ router.post('/simulate',protect,simulateTransaction)
 router.post('/compare',protect,compareBanks)
 router.get('/history',protect,getUserTransaction)
 router.get('/analytics',protect,getAnalytics)
-module.exports = router
+
+export default router;

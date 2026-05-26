@@ -24,5 +24,4 @@ router.get(
     protect,
     getChatHistory
 );
-
-module.exports = router;
+export default router;
